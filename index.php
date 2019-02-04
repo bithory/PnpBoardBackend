@@ -29,14 +29,19 @@ class Router
 
 		$result         = null;
 
+		$dir = './modules/';
+
 		switch($module){
 
 			case 'worlds':
-				require_once ('./modules/worlds/worlds.php');
+				require_once ($dir . 'worlds/worlds.php');
 				$worlds = new Worlds();
 				$result = $worlds->dbAction($action, $data);
 				break;
-			default:
+			case 'navigation':
+				require_once ($dir . 'navigation/navigation.php');
+				$navigation = new Navigation();
+				$result = $navigation->dbAction($action, $data);
 				break;
 		}
 

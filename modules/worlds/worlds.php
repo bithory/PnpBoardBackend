@@ -46,6 +46,8 @@ class Worlds
 				break;
 		}
 
+		$this->dbConn->db->close();
+
 		return $result;
 	}
 
@@ -59,7 +61,6 @@ class Worlds
 		$sql = 'SELECT * FROM ' . $this->table;
 
 		$tmpRes = $this->dbConn->db->query($sql);
-		$this->dbConn->db->close();
 
 		$result = $this->dbConn->mysqliToData($tmpRes);
 

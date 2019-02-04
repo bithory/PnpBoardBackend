@@ -50,4 +50,37 @@ class DBConnection
 
 		return $result;
 	}
+
+	/**
+	 * Hier wird nach unterstrichen für die Datnbankdeklaration (des Spaltennamens) gesucht.
+	 * Wenn ein Unterstrich gefunden wird dann wird dieser entfernt und die beiden Wörter in CamalCase
+	 * zusammengefügt.
+	 *
+	 * @param array $arr
+	 */
+	public function convertKey(Array &$arr){
+
+		if(isset($arr)){
+
+			foreach($arr as $key => $val){
+
+				foreach($val as $key1 => $val1){
+
+					if(strpos($key1, '_') !== false){
+
+						$pos = strpos($key1, '_');
+
+						$strStart   = substr($key1, 0, $pos);
+						$strEnd     = substr($key1, $pos + 1);
+
+						$newKey     = $strStart . ucfirst($strEnd);
+
+						$arr[$key][$newKey] = $val1;
+
+						unset($arr[$key][$key1]);
+					}
+				}
+			}
+		}
+	}
 }
