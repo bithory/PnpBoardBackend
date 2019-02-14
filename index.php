@@ -33,15 +33,20 @@ class Router
 
 		switch($module){
 
+			case 'navigation':
+				require_once ($dir . 'navigation/navigation.php');
+				$navigation = new Navigation();
+				$result = $navigation->dbAction($action, $data);
+				break;
 			case 'worlds':
 				require_once ($dir . 'worlds/worlds.php');
 				$worlds = new Worlds();
 				$result = $worlds->dbAction($action, $data);
 				break;
-			case 'navigation':
-				require_once ($dir . 'navigation/navigation.php');
-				$navigation = new Navigation();
-				$result = $navigation->dbAction($action, $data);
+			case 'parties':
+				require_once ($dir . 'parties/parties.php');
+				$parties    = new Parties();
+				$result     = $parties->dbAction($action, $data);
 				break;
 		}
 
