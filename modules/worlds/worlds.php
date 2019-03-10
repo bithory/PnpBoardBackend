@@ -58,7 +58,7 @@ class Worlds
 	 */
 	private function getIndex(){
 
-		$sql = 'SELECT * FROM ' . $this->table;
+		$sql = 'SELECT * FROM ' . $this->table . ' ORDER BY id DESC';
 
 		$tmpRes = $this->dbConn->db->query($sql);
 

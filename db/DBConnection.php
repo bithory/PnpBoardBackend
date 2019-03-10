@@ -60,7 +60,7 @@ class DBConnection
 	 */
 	public function convertKey(Array &$arr){
 
-		if(isset($arr)){
+		if(isset($arr) && is_array($arr)){
 
 			foreach($arr as $key => $val){
 

@@ -48,6 +48,10 @@ class Router
 				$parties    = new Parties();
 				$result     = $parties->dbAction($action, $data);
 				break;
+			case 'notes':
+				require_once ($dir . 'notes/notes.php');
+				$notes  = new Notes();
+				$result = $notes->dbAction($action, $data);
 		}
 
 		$this->returnData($result);

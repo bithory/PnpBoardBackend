@@ -71,7 +71,7 @@ class Parties
 	private function getIndex(){
 
 		$sql = 'SELECT a.id, a.name, b.name worldname FROM ' . $this->mainTable . ' a '
-			. 'JOIN ' . $this->tabWorld . '  b ON a.world_id = b.id';
+			. 'JOIN ' . $this->tabWorld . '  b ON a.world_id = b.id ORDER BY a.id DESC';
 
 		$mysqli = $this->dbConn->db->query($sql);
 		$result = $this->dbConn->mysqliToData($mysqli);

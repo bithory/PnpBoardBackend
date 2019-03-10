@@ -60,4 +60,31 @@ class ModelTemplates
 
 		return $sheet;
 	}
+
+	public function noteTempl(Array $noteArr){
+
+		$note = array(
+			'id'        => isset($noteArr['id']) ? intval($noteArr['id']) : 0,
+			'name'      => isset($noteArr['name']) ? $noteArr['name'] : '',
+			'text'      => isset($noteArr['noteText']) ? $noteArr['noteText'] : '',
+			'userId'    => isset($noteArr['userId']) ? intval($noteArr['userId']) : 0,
+			'partyId'   => isset($noteArr['partyId']) ? intval($noteArr['partyId']) : 0,
+			'read'      => isset($noteArr['read']) ? $noteArr['read'] : null,
+			'tags'      => isset($noteArr['tags']) ? $noteArr['tags'] : null,
+			'date'      => isset($noteArr['noteDate']) ? date('d.m.Y', $noteArr['noteDate']) : '',
+		);
+
+		return $note;
+	}
+
+	public function tagTempl(Array $tagArr){
+
+		$tag = array(
+			'id'        => isset($tagArr['id']) ? intval($tagArr['id']) : 0,
+			'name'      => isset($tagArr['name']) ? $tagArr['name'] : '',
+			'partyId'   => isset($tagArr['partyId']) ? $tagArr['partyId'] : '',
+		);
+
+		return $tag;
+	}
 }
