@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46ce2560-f3ce-4573-b420-a879d3945cfb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/modules/tags/tags.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,17 +15,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1037">
-              <caret line="66" column="13" lean-forward="true" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
+            <state relative-caret-position="858">
+              <caret line="61" column="68" selection-start-line="61" selection-start-column="68" selection-end-line="61" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/tags/tags.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1242">
-              <caret line="97" column="50" selection-start-line="97" selection-start-column="50" selection-end-line="97" selection-end-column="50" />
+            <state relative-caret-position="1079">
+              <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
             </state>
           </provider>
         </entry>
@@ -53,8 +51,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/DBConnection.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
+            <state relative-caret-position="178">
+              <caret line="50" column="23" lean-forward="true" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -62,8 +60,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modelTemplates/modelTemplates.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
+            <state relative-caret-position="-196">
               <caret line="32" column="69" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/modules/parties/dataLists.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="799">
+              <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -95,16 +102,16 @@
         <option value="$PROJECT_DIR$/modelTemplates/modelTemplates.php" />
         <option value="$PROJECT_DIR$/modules/notes/dataLists.php" />
         <option value="$PROJECT_DIR$/modules/notes/notes.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/modules/tags/tags.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1868" />
-    <option name="y" value="-866" />
+    <option name="x" value="2227" />
+    <option name="y" value="-871" />
     <option name="width" value="1077" />
-    <option name="height" value="1047" />
+    <option name="height" value="579" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -222,19 +229,19 @@
       <workItem from="1551788707990" duration="3081000" />
       <workItem from="1552056930988" duration="10405000" />
       <workItem from="1552142344662" duration="8819000" />
-      <workItem from="1552215267052" duration="5664000" />
+      <workItem from="1552215267052" duration="11419000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158166000" />
+    <option name="totallyTimeSpent" value="163921000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-861" width="1096" height="1896" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4917754" visible="true" weight="0.26930502" />
-      <window_info id="Structure" order="1" sideWeight="0.5082246" side_tool="true" visible="true" weight="0.26930502" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4907909" visible="true" weight="0.14872068" />
+      <window_info id="Structure" order="1" sideWeight="0.5092091" side_tool="true" visible="true" weight="0.14872068" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32973894" />
@@ -300,20 +307,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/parties/dataLists.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/DBConnection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="62" column="39" selection-start-line="62" selection-start-column="39" selection-end-line="62" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/worlds/worlds.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -328,13 +321,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modelTemplates/modelTemplates.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="32" column="69" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/parties/parties.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1171">
@@ -342,17 +328,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modelTemplates/modelTemplates.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-196">
+          <caret line="32" column="69" selection-start-line="32" selection-start-column="69" selection-end-line="32" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/DBConnection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="50" column="23" lean-forward="true" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="66" column="13" lean-forward="true" selection-start-line="66" selection-start-column="13" selection-end-line="66" selection-end-column="13" />
+        <state relative-caret-position="858">
+          <caret line="61" column="68" selection-start-line="61" selection-start-column="68" selection-end-line="61" selection-end-column="68" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/tags/tags.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="97" column="50" selection-start-line="97" selection-start-column="50" selection-end-line="97" selection-end-column="50" />
+        <state relative-caret-position="1079">
+          <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/parties/dataLists.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
         </state>
       </provider>
     </entry>

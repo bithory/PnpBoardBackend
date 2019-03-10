@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 25. Jan 2019 um 19:06
+-- Erstellungszeit: 10. Mrz 2019 um 22:26
 -- Server-Version: 10.1.31-MariaDB
 -- PHP-Version: 7.2.3
 
@@ -49,7 +49,8 @@ INSERT INTO `mod_note` (`id`, `name`, `note_text`, `user_id`, `party_id`, `note_
 (2, 'note2', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean', 1, 1, 1548436481),
 (3, 'note3', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean', 1, 2, 1548436481),
 (4, 'note4', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean', 1, 2, 1548436481),
-(5, 'note5', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean', 1, 1, 1548436481);
+(5, 'note5', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean', 1, 1, 1548436481),
+(13, 'NetworkSSSSSSSSSSS', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 1, 1, 1552172400);
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,7 @@ INSERT INTO `mod_party` (`id`, `name`, `world_id`, `gm`, `sheet_id`) VALUES
 (1, 'Network', 1, 1, 1),
 (2, 'party2(Splittermond)', 2, 2, 2),
 (3, 'party3(Shadowrun)', 5, 1, 5),
-(4, 'party4(Werwolf)', 1, 1, 2);
+(4, 'party4(Werwolf)', 1, 3, 6);
 
 -- --------------------------------------------------------
 
@@ -111,8 +112,18 @@ DROP TABLE IF EXISTS `mod_tag`;
 CREATE TABLE `mod_tag` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `partyId` int(11) NOT NULL
+  `party_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `mod_tag`
+--
+
+INSERT INTO `mod_tag` (`id`, `name`, `party_id`) VALUES
+(1, 'marie cabrah', 1),
+(2, 'New York', 1),
+(3, 'network', 1),
+(4, 'ghosttale', 1);
 
 -- --------------------------------------------------------
 
@@ -150,19 +161,22 @@ CREATE TABLE `mod_world` (
   `name` varchar(30) NOT NULL,
   `short` varchar(10) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `edition` varchar(30) NOT NULL
+  `edition` varchar(30) NOT NULL,
+  `author` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `mod_world`
 --
 
-INSERT INTO `mod_world` (`id`, `name`, `short`, `description`, `edition`) VALUES
-(1, 'Werwolf the Apocalypse', 'WtA', 'I am a WoD description', 'W20'),
-(2, 'Splittermond', 'Sm', 'I am a Splittermond description', '1st'),
-(3, 'Das schwarze Auge', 'DSA', 'I am a DSA description', '5th'),
-(4, 'Dungeons and Dragons', 'D&D', 'I am a D&D description', '5th'),
-(5, 'Shadowrun', 'Sr', 'I am a Shadowrun description', '3rd');
+INSERT INTO `mod_world` (`id`, `name`, `short`, `description`, `edition`, `author`) VALUES
+(1, 'Werwolf the Apocalypse', 'WtA', 'I am a WoD description. And i rock ;)', 'W20', 1),
+(2, 'Splittermond', 'Sm', 'I am a Splittermond description', '1st', 1),
+(3, 'Das schwarze Auge', 'DSA', 'I am a DSA description', '5th', 1),
+(4, 'Dungeons and Dragons', 'D&D', 'I am a D&D description', '5th', 1),
+(5, 'Shadowrun', 'Sr', 'I am a Shadowrun description', '3rd', 1),
+(7, 'Call of Cthulhu', 'CoC', 'i am a Call of Cthulhu description', '5th', 1),
+(11, 'Pathfinder', 'Pf', 'i am a description', '3rd', 1);
 
 -- --------------------------------------------------------
 
@@ -201,8 +215,13 @@ INSERT INTO `rel_notes_users_tags` (`note_id`, `user_id`, `tag_id`) VALUES
 (4, 2, 0),
 (5, 0, 2),
 (5, 0, 3),
+(5, 1, 0),
 (5, 3, 0),
-(5, 4, 0);
+(13, 1, 0),
+(13, 3, 0),
+(13, 0, 1),
+(13, 0, 2),
+(13, 0, 4);
 
 -- --------------------------------------------------------
 
@@ -221,9 +240,6 @@ CREATE TABLE `rel_users_parties` (
 --
 
 INSERT INTO `rel_users_parties` (`user_id`, `party_id`) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
 (1, 2),
 (2, 2),
 (4, 2),
@@ -233,7 +249,25 @@ INSERT INTO `rel_users_parties` (`user_id`, `party_id`) VALUES
 (1, 4),
 (2, 4),
 (3, 4),
-(4, 4);
+(4, 4),
+(1, 1),
+(2, 1),
+(3, 1),
+(1, 5),
+(3, 5),
+(4, 5),
+(1, 6),
+(3, 6),
+(4, 6),
+(1, 7),
+(3, 7),
+(4, 7),
+(1, 5),
+(2, 5),
+(1, 5),
+(2, 5),
+(3, 5),
+(4, 5);
 
 --
 -- Indizes der exportierten Tabellen
@@ -269,7 +303,7 @@ ALTER TABLE `mod_sheet`
 --
 ALTER TABLE `mod_tag`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `partyId` (`partyId`);
+  ADD KEY `partyId` (`party_id`);
 
 --
 -- Indizes für die Tabelle `mod_user`
@@ -306,7 +340,7 @@ ALTER TABLE `rel_users_parties`
 -- AUTO_INCREMENT für Tabelle `mod_note`
 --
 ALTER TABLE `mod_note`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT für Tabelle `mod_party`
@@ -324,7 +358,7 @@ ALTER TABLE `mod_sheet`
 -- AUTO_INCREMENT für Tabelle `mod_tag`
 --
 ALTER TABLE `mod_tag`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT für Tabelle `mod_user`
@@ -336,7 +370,7 @@ ALTER TABLE `mod_user`
 -- AUTO_INCREMENT für Tabelle `mod_world`
 --
 ALTER TABLE `mod_world`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints der exportierten Tabellen
@@ -367,20 +401,7 @@ ALTER TABLE `mod_sheet`
 -- Constraints der Tabelle `mod_tag`
 --
 ALTER TABLE `mod_tag`
-  ADD CONSTRAINT `mod_tag_ibfk_1` FOREIGN KEY (`partyId`) REFERENCES `mod_party` (`id`);
-
---
--- Constraints der Tabelle `rel_notes_users_tags`
---
-ALTER TABLE `rel_notes_users_tags`
-  ADD CONSTRAINT `rel_notes_users_tags_ibfk_1` FOREIGN KEY (`note_id`) REFERENCES `mod_note` (`id`);
-
---
--- Constraints der Tabelle `rel_users_parties`
---
-ALTER TABLE `rel_users_parties`
-  ADD CONSTRAINT `rel_users_parties_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `mod_user` (`id`),
-  ADD CONSTRAINT `rel_users_parties_ibfk_2` FOREIGN KEY (`party_id`) REFERENCES `mod_party` (`id`);
+  ADD CONSTRAINT `mod_tag_ibfk_1` FOREIGN KEY (`party_id`) REFERENCES `mod_party` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

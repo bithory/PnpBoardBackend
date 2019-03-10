@@ -58,6 +58,11 @@ class Router
 		$this->returnData($result);
 	}
 
+	/**
+	 * Wandelt die Daten zu JSON und gibt sie an das Frontend zurück
+	 *
+	 * @param $res
+	 */
 	private function returnData($res){
 
 		echo json_encode($res);
