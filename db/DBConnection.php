@@ -11,7 +11,7 @@ class DBConnection
 
 	private $host       = 'localhost';
 	private $user       = 'user';
-	private $pw         = '9GothiC9';
+	private $pw         = 'password';
 	private $dbName     = 'pnpboardbackend';
 
 	public $db;
