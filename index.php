@@ -13,6 +13,7 @@ require_once ($dir . 'worlds/worlds.php');
 require_once ($dir . 'parties/parties.php');
 require_once ($dir . 'notes/notes.php');
 require_once ($dir . 'tags/tags.php');
+require_once ($dir . 'account/account.php');
 
 
 header("Access-Control-Allow-Origin: *");
@@ -27,6 +28,8 @@ class Router
 		$module         = $_GET['module'];
 		$action         = $_GET['action'];
 		$data           = $_GET['data'];
+
+		$dev            = $_GET['dev'] ? $_GET['dev'] : false;
 
 		$result         = null;
 
@@ -53,9 +56,21 @@ class Router
 				$tags   = new Tags();
 				$result = $tags->dbAction($action, $data);
 				break;
+			case 'account':
+				$acc    = new Account();
+				$result = $acc->dbAction($action, $data);
+				break;
 		}
 
-		$this->returnData($result);
+		if($dev){
+
+			$this->devReturnData($result);
+			die();
+		}
+		else{
+
+			$this->returnData($result);
+		}
 	}
 
 	/**
@@ -65,7 +80,15 @@ class Router
 	 */
 	private function returnData($res){
 
+
 		echo json_encode($res);
+	}
+
+	private function devReturnData($res){
+
+		echo '<p>';
+		var_dump($res);
+		echo '</p>';
 	}
 }
 

@@ -26,8 +26,8 @@ class DBConnection
 	}
 
 	/**
-	 * Diese Funktion nimmt ein Mysqli Objekt entgegen und schreibt die darin enthaltenen Daten
-	 * in ein Array und gibt dieses zurück
+	 * This function takes an mysqli object and mapped the included data to an array and return
+	 * that array
 	 *
 	 * @param $mysqli
 	 * @return array
