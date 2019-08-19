@@ -56,7 +56,7 @@ class Notes
 			case 'delete':
 				$result = $this->delete($data);
 				break;
-			default:    //laden der Templates
+			default:    //loading of the templaes
 				require_once ('./modules/notes/dataLists.php');
 				$template   = new DataLists($this->dbConn);
 				$result     = $template->dbAction($action, $data);
@@ -130,7 +130,7 @@ class Notes
 
 			$sqlBasic = "INSERT INTO " . $this->tabRel . " (note_id, user_id, tag_id) VALUES ";
 
-			//Hinzufügen der Nutzer denen das lesen erlaubt ist ###############################
+			//add the users: which are allowed to read ###############################
 			$sql = $sqlBasic;
 
 			foreach($data['read'] as $key => $val){
@@ -143,7 +143,7 @@ class Notes
 
 			$read = $this->dbConn->db->query($sql);
 
-			//Hinzufügen der zugeordneten Tags ###############################
+			//add the related tags ###############################
 			$sql = $sqlBasic;
 
 			foreach($data['tags'] as $key => $val){
@@ -200,7 +200,7 @@ class Notes
 
 				$users = $this->dbConn->db->query($sql);
 
-				//Update der Tags
+				//Update tags
 				$sql = $sqlBasic;
 
 				foreach($data['tags'] as $key => $val){

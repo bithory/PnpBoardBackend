@@ -8,6 +8,8 @@
 
 $dir = './modules/';
 
+require_once ('./security/security.php');
+require_once ('modelTemplates/modelTemplates.php');
 require_once ($dir . 'navigation/navigation.php');
 require_once ($dir . 'worlds/worlds.php');
 require_once ($dir . 'parties/parties.php');
@@ -17,7 +19,8 @@ require_once ($dir . 'account/account.php');
 
 
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+//header("Content-Type: application/json; charset=UTF-8");
+//header('authorization: Bearer xx.yy.zz');
 
 class Router
 {
@@ -33,6 +36,22 @@ class Router
 
 		$result         = null;
 
+		if($check && strlen($data['token']) < 5 ){
+
+			if($dev)
+				echo 'no response check <br>';
+
+			$this->returnData(null);
+			die();
+		}
+
+		$temp = array();
+
+		$sec = new Security();
+		$temp = $sec->dbAction($data);
+
+		if($temp['user_id'])
+			$data['user_id'] = $temp['user_id'];
 
 		switch($module){
 
@@ -58,7 +77,7 @@ class Router
 				break;
 			case 'account':
 				$acc    = new Account();
-				$result = $acc->dbAction($action, $data);
+				$result = $acc->dbAction($action, $data, $dev);
 				break;
 		}
 
@@ -80,14 +99,14 @@ class Router
 	 */
 	private function returnData($res){
 
-
+		header("Content-Type: application/json; charset=UTF-8");
 		echo json_encode($res);
 	}
 
 	private function devReturnData($res){
 
 		echo '<p>';
-		var_dump($res);
+		var_export($res);
 		echo '</p>';
 	}
 }

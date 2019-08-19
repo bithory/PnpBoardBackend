@@ -6,6 +6,12 @@
  * Time: 14:44
  */
 
+/**
+ * Class ModelTemplates
+ *
+ * This class is a template class for the model types which are used in frontend.
+ * All the members convert the db data into the form which are used in the frontend.
+ */
 class ModelTemplates
 {
 
@@ -86,5 +92,26 @@ class ModelTemplates
 		);
 
 		return $tag;
+	}
+
+	public function statusTempl(Array $statusArr){
+
+		$status = array(
+			'status'    => isset($statusArr['status']) ? boolval($statusArr['status']) : false,
+			'msg'       => isset($statusArr['msg']) ? $statusArr['msg'] : '',
+		);
+
+		return $status;
+	}
+
+	public function loginTempl(Array $logArr){
+
+		$log = array(
+			'token'     => isset($logArr['token']) ? $logArr['token'] : '',
+			'status'    => isset($logArr['status']) ? boolval($logArr['status']) : false,
+			'timestamp' => isset($logArr['timestamp']) ? intval($logArr['timestamp']) : 0,
+		);
+
+		return $log;
 	}
 }

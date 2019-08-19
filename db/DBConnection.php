@@ -11,7 +11,7 @@ class DBConnection
 
 	private $host       = 'localhost';
 	private $user       = 'user';
-	private $pw         = 'password';
+	private $pw         = '9GothiC9';
 	private $dbName     = 'pnpboardbackend';
 
 	public $db;
@@ -52,9 +52,8 @@ class DBConnection
 	}
 
 	/**
-	 * Hier wird nach unterstrichen für die Datnbankdeklaration (des Spaltennamens) gesucht.
-	 * Wenn ein Unterstrich gefunden wird dann wird dieser entfernt und die beiden Wörter in CamalCase
-	 * zusammengefügt.
+	 * This function searches for underscores (which was used for the db declaration) and replace it through
+	 * a camelcase declaration.
 	 *
 	 * @param array $arr
 	 */

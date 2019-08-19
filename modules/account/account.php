@@ -17,15 +17,26 @@ class Account
 	 */
 	private $dbConn;
 	private $table;
+	private $logStatTable;
+
+	private $modTempl;
+
+	private $dev;
 
 	public function __construct(){
 
-		$this->table = 'mod_user';
+		$this->table        = 'mod_user';
+		$this->logStatTable = 'man_login_status';
+
+		$this->modTempl = new ModelTemplates();
 	}
 
-	public function dbAction(&$action, &$data){
+	public function dbAction(&$action, &$data, &$dev){
 
 		$this->dbConn = new DBConnection();
+
+		if($dev)
+			$this->dev = $dev;
 
 		$result = false;
 
@@ -53,6 +64,9 @@ class Account
 				break;
 			case 'login':
 				$result = $this->login($data);
+				break;
+			case 'logout':
+				$result = $this->logout($data);
 				break;
 		}
 
@@ -88,7 +102,17 @@ class Account
 
 	}
 
+	/**
+	 * Checks for User and set it to the man_login_status table.
+	 * if user still is in table it will return the table data
+	 * if user not exits in man_login_status table ist will insert user into the table
+	 *
+	 * @param array $data
+	 * @return array|mixed
+	 */
 	private function login(Array &$data){
+
+		$time = time();
 
 		if(!isset($data['token'])){
 
@@ -99,41 +123,101 @@ class Account
 			$mysqli = $this->dbConn->db->query($sql);
 			$result = $this->dbConn->mysqliToData($mysqli);
 			$result = $result[0];
-
+			//generate token and insert into login table
 			if(is_array($result) && $result != null){
 
+				//example for user: max, id = 1, time 30.04.2019 - 12:59:16
+				//not crypted token: mx_1_1556621956
 				$hash   = substr($result['username'], 0, 1);    //first name letter
 				$hash  .= substr($result['username'], -1, 1);   //last name letter
 				$hash  .= '_';
 				$hash  .= $result['id'];
 				$hash  .= '_';
-				$hash  .= time();
+				$hash  .= $time; //in unixtime
 
 				$hash   = hash('sha256', $hash);
 
-				$sql = 'INSERT INTO man_login_status (user_id, token, timestamp) VALUES('
-					. ""    . $result['id'] .   ', '
-					. "'"   . $hash         .   "', "
-					. ""    . time()        .   ') ';
+				$userData = $result;
 
-				unset($result);
+				$sql = 'SELECT token, timestamp FROM ' . $this->logStatTable . ' WHERE user_id = ' . $result['id'];
 
-				$result['status']   = $this->dbConn->db->query($sql);
-				$result['token']     = "" . $hash;
+				$mysqli = $this->dbConn->db->query($sql);
+				$result = $this->dbConn->mysqliToData($mysqli);
 
-				//because query return only false but not true
-				$result['status']   = !$result['status'] ? $result['status'] : true;
+				if(is_array($result) && $result != null){ //update the frontend data
+
+					if($this->dev)
+						echo 'update login  <br>';
+
+					$result = $result[0];
+
+					$result['status'] = true;
+
+					$result = $this->modTempl->loginTempl($result);
+				}
+				else{   //insert into login table
+
+					if($this->dev)
+						echo 'insert login  <br>';
+
+					$result = $this->insertLogin($userData, $hash, $time);
+				}
 			}
 			else{
 
+
 				$result['token']  = '';
 				$result['status'] = false;
+				$result['timestamp']= $time;
 			}
 		}
 		else{
 
 			$result['token']    = $data['token'];
 			$result['status']   = true;
+			$result['timestamp']= $time;
+
+			$result = $this->modTempl->loginTempl($result);
+		}
+
+		return $result;
+	}
+
+	private function insertLogin($data, $hash, $time){
+
+		$sql = 'INSERT INTO man_login_status (user_id, token, timestamp) VALUES('
+			. ""    . $data['id'] .   ', '
+			. "'"   . $hash         .   "', "
+			. ""    . $time         .   ') ';
+
+		if($this->dev)
+			echo 'INSERT_LOGIN QUERY: ' . $sql . '  <br>  ';
+
+		$result = array();
+
+		$result['token']    = "" . $hash;
+		$result['status']   = $this->dbConn->db->query($sql);
+		$result['timestamp']= $time;
+
+		//because query return only false but not true
+		$result['status']   = !$result['status'] ? $result['status'] : true;
+
+		$result = $this->modTempl->loginTempl($result);
+
+		return $result;
+	}
+
+	private function logout(Array &$data){
+
+		$sql = 'DELETE FROM ' . $this->logStatTable . " WHERE token = '" . $data['token'] . "'";
+
+		$result['status']   = $this->dbConn->db->query($sql);
+		$result             = $this->modTempl->statusTempl($result);
+
+		if($this->dev){
+
+			echo $sql . '<br><lr/><br>';
+			var_dump($result);
 		}
 
 		return $result;

@@ -35,32 +35,33 @@ class Navigation
 
 	private function getNavigation(&$data){
 
-//		$sql = 'SELECT c.id world_id, c.name, c.short, a.party_id, b.name party_name FROM rel_users_parties a '
-		$sql = 'SELECT c.id world_id, c.name, c.short FROM rel_users_parties a '
-			. 'JOIN mod_party b ON a.party_id = b.id '
-			. 'JOIN mod_world c ON b.world_id = c.id '
-			. 'Where a.user_id = ' . $data['id'] . ' GROUP BY world_id';
+		if($data['user_id']){
 
-//		echo $sql;
+			$sql = 'SELECT c.id world_id, c.name, c.short FROM rel_users_parties a '
+				. 'JOIN mod_party b ON a.party_id = b.id '
+				. 'JOIN mod_world c ON b.world_id = c.id '
+				. 'Where a.user_id = ' . $data['user_id'] . ' GROUP BY world_id';
 
-		$mysqli = $this->dbConn->db->query($sql);
+			$mysqli = $this->dbConn->db->query($sql);
 
-		$result = $this->dbConn->mysqliToData($mysqli);
-		$this->dbConn->convertKey($result);
+			$result = $this->dbConn->mysqliToData($mysqli);
+			$this->dbConn->convertKey($result);
 
-		if(isset($result) && $result){
 
-			$tmp = array();
+			if(isset($result) && $result){
 
-			foreach($result as $key => $val){
+				$tmp = array();
 
-				$sql = 'SELECT id party_id, name party_name FROM mod_party WHERE world_id = ' . $val['worldId'];
+				foreach($result as $key => $val){
 
-				$mysqli = $this->dbConn->db->query($sql);
-				$tmp    = $this->dbConn->mysqliToData($mysqli);
-				$this->dbConn->convertKey($tmp);
+					$sql = 'SELECT id party_id, name party_name FROM mod_party WHERE world_id = ' . $val['worldId'];
 
-				$result[$key]['party'] = $tmp;
+					$mysqli = $this->dbConn->db->query($sql);
+					$tmp    = $this->dbConn->mysqliToData($mysqli);
+					$this->dbConn->convertKey($tmp);
+
+					$result[$key]['party'] = $tmp;
+				}
 			}
 		}
 

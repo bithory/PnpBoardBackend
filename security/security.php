@@ -23,19 +23,29 @@ class Security
 		$this->table = 'man_login_status';
 	}
 
-	public function dbAction(&$action, &$data){
+	public function dbAction(&$data){
 
 		$this->dbConn = new DBConnection();
 
 		$result = false;
 
-		switch($action){
-			case 'setLogin':
-				break;
-		}
+		$result = $this->checkForLoginStatus($data);
 
 		$this->dbConn->db->close();
 
 		return $result;
+	}
+
+	private function checkForLoginStatus(&$data){
+
+
+		$query = "SELECT user_id FROM " . $this->table . " WHERE token = '" . $data['token'] . "'";
+
+		$result = $this->dbConn->db->query($query);
+		$result = $this->dbConn->mysqliToData($result);
+
+		$temp['user_id'] =  $result [0]['user_id'];
+
+		return $temp;
 	}
 }
