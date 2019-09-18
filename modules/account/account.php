@@ -44,8 +44,8 @@ class Account
 			case 'index':
 				$result = $this->getIndex();
 				break;
-			case 'add':
-				$result = $this->addData($data);
+			case 'register':
+				$result = $this->register($data);
 				break;
 			case 'edit':
 				$result = $this->editData($data);
@@ -79,8 +79,24 @@ class Account
 
 	}
 
-	private function addData(Array &$data){
+	private function register(Array &$data){
 
+		$query = "INSERT INTO " . $this->table . "(username, pw, email, sec_question, sec_answer) VALUES ("
+			. "'" . $data['username']   . "', "
+			. "'" . $data['pw']         . "', "
+			. "'" . $data['email']      . "', "
+			. "'" . $data['question']   . "', "
+			. "'" . $data['answer']     . "')";
+
+		$mysqli = $this->dbConn->db->query($query);
+		$result = null;
+
+		if(!$mysqli)
+			$result = $this->modTempl->statusTempl(array('status' => false, 'msg' => 'username'));
+		else
+			$result = $this->modTempl->statusTempl(array('status' => true, 'msg' => ''));
+
+		return $result;
 	}
 
 	private function editData(Array &$data){

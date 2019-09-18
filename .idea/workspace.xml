@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="46ce2560-f3ce-4573-b420-a879d3945cfb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/DBConnection.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/DBConnection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modelTemplates/modelTemplates.php" beforeDir="false" afterPath="$PROJECT_DIR$/modelTemplates/modelTemplates.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/account/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/account/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/navigation/navigation.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/navigation/navigation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/modules/notes/notes.php" beforeDir="false" afterPath="$PROJECT_DIR$/modules/notes/notes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/security/security.php" beforeDir="false" afterPath="$PROJECT_DIR$/security/security.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -125,7 +120,21 @@
       <workItem from="1564961106071" duration="1394000" />
       <workItem from="1565004797824" duration="2121000" />
       <workItem from="1565132227577" duration="3384000" />
-      <workItem from="1566225170150" duration="13102000" />
+      <workItem from="1566225170150" duration="13704000" />
+      <workItem from="1566283684362" duration="127000" />
+      <workItem from="1566334158114" duration="2185000" />
+      <workItem from="1566379521777" duration="1213000" />
+      <workItem from="1566500731018" duration="1200000" />
+      <workItem from="1566833970170" duration="229000" />
+      <workItem from="1566834262655" duration="39000" />
+      <workItem from="1566834313094" duration="305000" />
+      <workItem from="1568040923566" duration="1834000" />
+      <workItem from="1568295805729" duration="15000" />
+      <workItem from="1568469324891" duration="601000" />
+      <workItem from="1568644630173" duration="2450000" />
+      <workItem from="1568720533958" duration="1431000" />
+      <workItem from="1568725706700" duration="7667000" />
+      <workItem from="1568807080069" duration="2412000" />
     </task>
     <servers />
   </component>

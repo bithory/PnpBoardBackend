@@ -36,14 +36,18 @@ class Router
 
 		$result         = null;
 
-		if($check && strlen($data['token']) < 5 ){
+		if(($module == 'account' && $action != 'register') || ($module != 'account')){
 
-			if($dev)
-				echo 'no response check <br>';
+			if($check && strlen($data['token']) < 5){
 
-			$this->returnData(null);
-			die();
+				if($dev)
+					echo 'no response check <br>';
+
+				$this->returnData(null);
+				die();
+			}
 		}
+
 
 		$temp = array();
 
