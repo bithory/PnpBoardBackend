@@ -73,9 +73,11 @@ class Notes
 
 		$sql = 'SELECT DISTINCT a.id, a.name, a.party_id, a.note_date  FROM ' . $this->mainTable . ' a JOIN ' . $this->tabRel . ' b ON a.id = b.note_id '
 			. 'WHERE party_id = '   . $data['partyId']  . ' '
-			. 'AND (a.user_id = '   . $data['userId']   . ' '
-			. 'OR b.user_id = '     . $data['userId']   . ') '
+			. 'AND (a.user_id = '   . $data['user_id']   . ' '
+			. 'OR b.user_id = '     . $data['user_id']   . ') '
 			. 'ORDER BY id DESC';
+
+//		echo $sql;
 
 		$mysqli = $this->dbConn->db->query($sql);
 		$result = $this->dbConn->mysqliToData($mysqli);

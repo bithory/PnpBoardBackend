@@ -121,7 +121,7 @@ class Account
 	/**
 	 * Checks for User and set it to the man_login_status table.
 	 * if user still is in table it will return the table data
-	 * if user not exits in man_login_status table ist will insert user into the table
+	 * if user not exits in man_login_status table it will insert user into the table
 	 *
 	 * @param array $data
 	 * @return array|mixed
