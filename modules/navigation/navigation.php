@@ -54,7 +54,8 @@ class Navigation
 
 				foreach($result as $key => $val){
 
-					$sql = 'SELECT id party_id, name party_name FROM mod_party WHERE world_id = ' . $val['worldId'];
+					$sql = 'SELECT id party_id, name party_name FROM mod_party a JOIN rel_users_parties b ON a.id = b.party_id '
+						. 'WHERE a.world_id = ' . $val['worldId'] . ' AND b.user_id = ' . $data['user_id'];
 
 					$mysqli = $this->dbConn->db->query($sql);
 					$tmp    = $this->dbConn->mysqliToData($mysqli);
