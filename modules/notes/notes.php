@@ -71,13 +71,11 @@ class Notes
 	protected function getIndex(&$data)
 	{
 
-		$sql = 'SELECT DISTINCT a.id, a.name, a.party_id, a.note_date  FROM ' . $this->mainTable . ' a JOIN ' . $this->tabRel . ' b ON a.id = b.note_id '
+		$sql = 'SELECT DISTINCT a.id, a.name, a.party_id, a.note_date, a.user_id  FROM ' . $this->mainTable . ' a JOIN ' . $this->tabRel . ' b ON a.id = b.note_id '
 			. 'WHERE party_id = '   . $data['partyId']  . ' '
 			. 'AND (a.user_id = '   . $data['user_id']   . ' '
 			. 'OR b.user_id = '     . $data['user_id']   . ') '
 			. 'ORDER BY id DESC';
-
-//		echo $sql;
 
 		$mysqli = $this->dbConn->db->query($sql);
 		$result = $this->dbConn->mysqliToData($mysqli);
@@ -87,6 +85,9 @@ class Notes
 			$this->dbConn->convertKey($result);
 
 			foreach($result as $key => $val){
+
+				if($val['userId'] == $data['user_id'])
+					$val['author'] = true;
 
 				$result[$key] = $this->modTempl->noteTempl($val);
 			}

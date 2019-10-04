@@ -78,6 +78,7 @@ class ModelTemplates
 			'read'      => isset($noteArr['read']) ? $noteArr['read'] : null,
 			'tags'      => isset($noteArr['tags']) ? $noteArr['tags'] : null,
 			'date'      => isset($noteArr['noteDate']) ? date('d.m.Y', $noteArr['noteDate']) : '',
+			'author'    => isset($noteArr['author']) ? $noteArr['author'] : false,
 		);
 
 		return $note;
