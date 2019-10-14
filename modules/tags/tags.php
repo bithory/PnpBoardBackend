@@ -15,14 +15,17 @@ class Tags
 
 	private $table;
 
+	private $dev;
+
 	public function __construct(){
 
 		$this->table = 'mod_tag';
 	}
 
-	public function dbAction(&$action, &$data){
+	public function dbAction(&$action, &$data, &$dev){
 
-		$this->dbConn = new DBConnection();
+		$this->dbConn   = new DBConnection();
+		$this->dev      = $dev;
 
 		$result = false;
 

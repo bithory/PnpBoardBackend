@@ -28,6 +28,8 @@ class Notes
 	 */
 	private $modTempl;
 
+	private $dev;
+
 	public function __construct()
 	{
 
@@ -35,9 +37,10 @@ class Notes
 		$this->modTempl = new ModelTemplates();
 	}
 
-	public function dbAction(&$action, &$data){
+	public function dbAction(&$action, &$data, &$dev){
 
-		$result = array();
+		$result     = array();
+		$this->dev  = $dev;
 
 		switch($action){
 
@@ -55,6 +58,9 @@ class Notes
 				break;
 			case 'delete':
 				$result = $this->delete($data);
+				break;
+			case 'search':
+				$result = $this->search($data);
 				break;
 			default:    //loading of the templaes
 				require_once ('./modules/notes/dataLists.php');
@@ -83,15 +89,7 @@ class Notes
 		if(isset($result) && is_array($result)){
 
 			$this->dbConn->convertKey($result);
-
-			foreach($result as $key => $val){
-
-				if($val['userId'] == $data['user_id'])
-					$val['author'] = true;
-
-				$result[$key] = $this->modTempl->noteTempl($val);
-			}
-
+			$this->setAuthor($result, $data);
 			$this->getSubModels($result, 'tags');
 		}
 
@@ -248,7 +246,7 @@ class Notes
 	 * @param array $arr
 	 * @param string $submodell = read, tags
 	 */
-	private function getSubModels(Array &$arr, $submodell){
+	private function getSubModels(Array &$arr, $submodell = 'tags'){
 
 		$options = array();
 
@@ -294,6 +292,63 @@ class Notes
 					$arr[$key][$submodell] = $result;
 				}
 			}
+		}
+	}
+
+	private function search(&$data){
+
+		$elem = explode(', ', $data['search']);
+
+		$sql = 'SELECT DISTINCT a.id, a.name, a.note_text, a.user_id, a.party_id, a.note_date FROM ' . $this->mainTable
+			. ' a JOIN ' . $this->tabRel . ' b ON a.id = b.note_id '
+			. 'JOIN ' . $this->table2 . ' c ON b.tag_id = c.id WHERE '
+			. '(a.user_id = ' . $data['user_id'] . ' OR b.user_id = ' . $data['user_id'] . ') AND (';
+
+
+		if(is_array($elem) && $elem != null){
+
+			$isFirst = true;
+
+			foreach($elem as $val){
+
+				if($isFirst){
+
+					$sql .= "a.name LIKE '%" . $val . "%' OR c.name LIKE '%" . $val . "%' ";
+					$isFirst = false;
+				}
+				else{
+
+					$sql .= "OR a.name LIKE '%" . $val . "%' OR c.name LIKE '%" . $val . "%' ";
+				}
+
+			}
+		}
+
+		$sql .= ') '
+			. 'ORDER BY a.id DESC';
+
+		$mysqli = $this->dbConn->db->query($sql);
+		$result = $this->dbConn->mysqliToData($mysqli);
+
+		$this->dbConn->convertKey($result);
+
+		$this->setAuthor($result, $data);
+		$this->getSubModels($result);
+
+		if($this->dev)
+			echo $sql . '<br>';
+
+		return $result;
+	}
+
+	private function setAuthor(Array &$arr, Array &$data){
+
+		foreach($arr as $key => $val){
+
+			if($val['userId'] == $data['user_id'])
+				$val['author'] = true;
+
+			$arr[$key] = $this->modTempl->noteTempl($val);
 		}
 	}
 }

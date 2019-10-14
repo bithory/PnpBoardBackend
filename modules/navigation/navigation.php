@@ -17,16 +17,19 @@ class Navigation
 	private $dbConn;
 	private $table1;
 
+	private $dev;
+
 	public function __construct(){
 
 
 	}
 
-	public function dbAction(&$action, &$data){
+	public function dbAction(&$action, &$data, &$dev){
 
 		$this->dbConn = new DBConnection();
 
-		$result = $this->getNavigation($data);
+		$result     = $this->getNavigation($data);
+		$this->dev  = $dev;
 
 		$this->dbConn->db->close();
 

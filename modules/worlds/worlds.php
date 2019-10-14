@@ -16,17 +16,19 @@ class Worlds
 	 */
 	private $dbConn;
 	private $table;
+	private $dev;
 
 	public function __construct(){
 
 		$this->table = 'mod_world';
 	}
 
-	public function dbAction(&$action, &$data){
+	public function dbAction(&$action, &$data, &$dev){
 
 		$this->dbConn = new DBConnection();
 
-		$result = false;
+		$result     = false;
+		$this->dev  = $dev;
 
 		switch($action){
 			case 'index':

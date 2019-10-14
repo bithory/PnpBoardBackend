@@ -61,23 +61,23 @@ class Router
 
 			case 'navigation':
 				$navigation = new Navigation();
-				$result = $navigation->dbAction($action, $data);
+				$result = $navigation->dbAction($action, $data, $dev);
 				break;
 			case 'worlds':
 				$worlds = new Worlds();
-				$result = $worlds->dbAction($action, $data);
+				$result = $worlds->dbAction($action, $data, $dev);
 				break;
 			case 'parties':
 				$parties    = new Parties();
-				$result     = $parties->dbAction($action, $data);
+				$result     = $parties->dbAction($action, $data, $dev);
 				break;
 			case 'notes':
 				$notes  = new Notes();
-				$result = $notes->dbAction($action, $data);
+				$result = $notes->dbAction($action, $data, $dev);
 				break;
 			case 'tags':
 				$tags   = new Tags();
-				$result = $tags->dbAction($action, $data);
+				$result = $tags->dbAction($action, $data, $dev);
 				break;
 			case 'account':
 				$acc    = new Account();
@@ -107,11 +107,53 @@ class Router
 		echo json_encode($res);
 	}
 
-	private function devReturnData($res){
+	private function devReturnData($arg, $argKey = 0){
 
-		echo '<p>';
-		var_export($res);
-		echo '</p>';
+		if ($argKey == 0){
+
+			echo '<style>'
+				. '.printArr > ul, li{'
+				. 'list-style-type : none;'
+				. '}'
+				. '</style>'
+				. '<div class="bg-info printArr">';
+		}
+
+		if(is_array($arg)){
+
+			echo '<ul>';
+
+			foreach($arg as $key => $val){
+
+				if(is_array($val)){
+
+					echo '<li class="text-muted">';
+					echo $key . ' => array(';
+					$this->devReturnData($val, ($argKey + 1));
+					echo '),';
+					echo '</li>';
+				}
+				else{
+
+					echo '<li class="text-muted">';
+					echo $key . ' => ' . $val;
+					echo '</li>';
+				}
+			}
+
+			echo '</ul>';
+		}
+		else{
+
+			echo '<ul>';
+			echo '<li class="text-muted">';
+			echo $arg;
+			echo '</li>';
+			echo '</ul>';
+		}
+
+		if($argKey == 0)
+			echo '</div>';
 	}
 }
 

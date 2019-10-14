@@ -35,8 +35,7 @@ class Account
 
 		$this->dbConn = new DBConnection();
 
-		if($dev)
-			$this->dev = $dev;
+		$this->dev = $dev;
 
 		$result = false;
 

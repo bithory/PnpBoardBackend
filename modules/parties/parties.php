@@ -26,13 +26,16 @@ class Parties
 	private $tabUser        = 'mod_user';
 	private $tabRelUsrParty = 'rel_users_parties';
 
+	private $dev;
+
 	public function __construct(){
 	}
 
-	public function dbAction(&$action, &$data){
+	public function dbAction(&$action, &$data, &$dev){
 
 		$this->dbConn   = new DBConnection();
 		$this->modTempl = new ModelTemplates();
+		$this->dev      = $dev;
 
 		$result = array();
 
