@@ -21,6 +21,7 @@ class DBConnection
 	public function __construct()
 	{
 
+		//bind db data for connection
 		$data = new DBData();
 		$this->host     = $data->host;
 		$this->user     = $data->user;
