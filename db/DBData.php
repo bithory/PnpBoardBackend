@@ -3,10 +3,10 @@
 
 class DBData
 {
-	private $host   = 'host';
-	private $user   = 'user';
-	private $pw     = 'pw';
-	private $dbName = 'dbName';
+	public $host   = 'host';
+	public $user   = 'user';
+	public $pw     = 'pw';
+	public $dbName = 'dbName';
 
 	public function __construct()
 	{
