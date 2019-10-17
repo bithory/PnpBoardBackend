@@ -6,18 +6,26 @@
  * Time: 21:48
  */
 
+require_once ('./db/DBData.php');
+
 class DBConnection
 {
 
-	private $host       = 'localhost';
-	private $user       = 'user';
-	private $pw         = '9GothiC9';
-	private $dbName     = 'pnpboardbackend';
+	private $host;
+	private $user;
+	private $pw;
+	private $dbName;
 
 	public $db;
 
 	public function __construct()
 	{
+
+		$data = new DBData();
+		$this->host     = $data->host;
+		$this->user     = $data->user;
+		$this->pw       = $data->pw;
+		$this->dbName   = $data->dbName;
 
 		$this->db = new mysqli($this->host, $this->user, $this->pw, $this->dbName);
 
