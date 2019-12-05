@@ -31,21 +31,24 @@ class Router
 		$module         = $_GET['module'];
 		$action         = $_GET['action'];
 		$data           = $_GET['data'];
+		$token          = isset($data['token']) ? $data['token'] : false;
 
-		$dev            = $_GET['dev'] ? $_GET['dev'] : false;
+		$dev            = $_GET['dev'] ? $_GET['dev'] : '';
 
 		$result         = null;
+		$check          = false;
 
-		if(($module == 'account' && $action != 'register') || ($module != 'account')){
+		$sec            = new Security();
 
-			if($check && strlen($data['token']) < 5){
+		$check = $sec->checkResponsePermission($module, $action, $token);
 
-				if($dev)
-					echo 'no response check <br>';
+		if(!$check){
 
-				$this->returnData(null);
-				die();
-			}
+			if($dev)
+				echo 'no response check <br>';
+
+			$this->returnData(null);
+			die();
 		}
 
 

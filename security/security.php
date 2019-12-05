@@ -36,6 +36,26 @@ class Security
 		return $result;
 	}
 
+	public function checkResponsePermission(&$module, &$action, $token){
+
+		$check = true;
+
+		if($module == null)
+			$check = false;
+		if($action == null)
+			$check = false;
+
+		if($module != 'account' && strlen($token) < 5)
+			$check = false;
+
+		if($module == 'account' && $action != 'register'){
+			if($action != 'login')
+				$check = false;
+		}
+
+		return $check;
+	}
+
 	private function checkForLoginStatus(&$data){
 
 
