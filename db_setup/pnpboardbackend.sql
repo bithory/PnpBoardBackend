@@ -267,30 +267,30 @@ ALTER TABLE `mod_world`
 --
 -- Constraints der Tabelle `mod_note`
 --
-ALTER TABLE `mod_note`
-  ADD CONSTRAINT `mod_note_ibfk_1` FOREIGN KEY (`party_id`) REFERENCES `mod_party` (`id`),
-  ADD CONSTRAINT `mod_note_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `mod_user` (`id`);
-
+-- ALTER TABLE `mod_note`
+--   ADD CONSTRAINT `mod_note_ibfk_1` FOREIGN KEY (`party_id`) REFERENCES `mod_party` (`id`),
+--   ADD CONSTRAINT `mod_note_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `mod_user` (`id`);
 --
--- Constraints der Tabelle `mod_party`
+-- --
+-- -- Constraints der Tabelle `mod_party`
+-- --
+-- ALTER TABLE `mod_party`
+--   ADD CONSTRAINT `mod_party_ibfk_1` FOREIGN KEY (`gm`) REFERENCES `mod_user` (`id`),
+--   ADD CONSTRAINT `mod_party_ibfk_2` FOREIGN KEY (`world_id`) REFERENCES `mod_world` (`id`),
+--   ADD CONSTRAINT `mod_party_ibfk_3` FOREIGN KEY (`sheet_id`) REFERENCES `mod_sheet` (`id`);
 --
-ALTER TABLE `mod_party`
-  ADD CONSTRAINT `mod_party_ibfk_1` FOREIGN KEY (`gm`) REFERENCES `mod_user` (`id`),
-  ADD CONSTRAINT `mod_party_ibfk_2` FOREIGN KEY (`world_id`) REFERENCES `mod_world` (`id`),
-  ADD CONSTRAINT `mod_party_ibfk_3` FOREIGN KEY (`sheet_id`) REFERENCES `mod_sheet` (`id`);
-
+-- --
+-- -- Constraints der Tabelle `mod_sheet`
+-- --
+-- ALTER TABLE `mod_sheet`
+--   ADD CONSTRAINT `mod_sheet_ibfk_1` FOREIGN KEY (`world_id`) REFERENCES `mod_world` (`id`);
 --
--- Constraints der Tabelle `mod_sheet`
---
-ALTER TABLE `mod_sheet`
-  ADD CONSTRAINT `mod_sheet_ibfk_1` FOREIGN KEY (`world_id`) REFERENCES `mod_world` (`id`);
-
---
--- Constraints der Tabelle `mod_tag`
---
-ALTER TABLE `mod_tag`
-  ADD CONSTRAINT `mod_tag_ibfk_1` FOREIGN KEY (`party_id`) REFERENCES `mod_party` (`id`);
-COMMIT;
+-- --
+-- -- Constraints der Tabelle `mod_tag`
+-- --
+-- ALTER TABLE `mod_tag`
+--   ADD CONSTRAINT `mod_tag_ibfk_1` FOREIGN KEY (`party_id`) REFERENCES `mod_party` (`id`);
+-- COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

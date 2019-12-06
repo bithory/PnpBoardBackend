@@ -117,6 +117,11 @@ class Worlds
 
 		$sql = 'DELETE FROM ' . $this->table . ' WHERE id = ' . $data['id'];
 
+		if($this->dev){
+			echo $sql . '<br>';
+			var_export($data);
+		}
+
 		$result['status'] = $this->dbConn->db->query($sql);
 
 		return $result;

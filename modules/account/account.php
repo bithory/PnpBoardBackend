@@ -226,9 +226,6 @@ class Account
 
 		$sql = 'DELETE FROM ' . $this->logStatTable . " WHERE token = '" . $data['token'] . "'";
 
-		if($this->dev)
-			echo $sql;
-
 		$result['status']   = $this->dbConn->db->query($sql);
 		$result             = $this->modTempl->statusTempl($result);
 

@@ -159,13 +159,18 @@ class Parties
 
 	private function addParty(&$data){
 
-		$sql = 'INSERT INTO ' . $this->mainTable . ' (name, world_id, gm, sheet_id) VALUES('
+		$sql = 'INSERT INTO ' . $this->mainTable . ' (name, world_id, gm, sheet_id) VALUES ('
 			. "'"   . $data['name']         . "', "
 					. $data['world']['id']  . ", "
 					. $data['gm']['id']     . ", "
 					. $data['sheet']['id']  .')';
 
 		$result['status'] = $this->dbConn->db->query($sql);
+
+		if($this->dev){
+			echo $sql . '<br>';
+			var_export($data);
+		}
 
 		if($result['status']){
 
