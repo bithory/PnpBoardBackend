@@ -58,7 +58,6 @@ class Security
 
 	private function checkForLoginStatus(&$data){
 
-
 		$query = "SELECT user_id FROM " . $this->table . " WHERE token = '" . $data['token'] . "'";
 
 		$result = $this->dbConn->db->query($query);

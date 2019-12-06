@@ -33,7 +33,7 @@ class Router
 		$data           = $_GET['data'];
 		$token          = isset($data['token']) ? $data['token'] : false;
 
-		$dev            = $_GET['dev'] ? $_GET['dev'] : '';
+		$dev            = isset($_GET['dev']) ? $_GET['dev'] : '';
 
 		$result         = null;
 		$check          = false;
@@ -50,15 +50,14 @@ class Router
 			$this->returnData(null);
 			die();
 		}
+		else{
 
+			$temp = array();
+			$temp = $sec->dbAction($data);
 
-		$temp = array();
-
-		$sec = new Security();
-		$temp = $sec->dbAction($data);
-
-		if($temp['user_id'])
-			$data['user_id'] = $temp['user_id'];
+			if($temp['user_id'])
+				$data['user_id'] = $temp['user_id'];
+		}
 
 		switch($module){
 
