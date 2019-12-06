@@ -42,15 +42,18 @@ class Security
 
 		if($module == null)
 			$check = false;
+
 		if($action == null)
 			$check = false;
 
-		if($module != 'account' && strlen($token) < 5)
+		if($module != 'account' && strlen($token) < 5)  //token check for all modules != account
 			$check = false;
 
 		if($module == 'account' && $action != 'register'){
-			if($action != 'login')
-				$check = false;
+			if($action != 'login'){
+				if(strlen($token) < 5)  //token check for module == account
+					$check = false;
+			}
 		}
 
 		return $check;
