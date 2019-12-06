@@ -45,7 +45,7 @@ class Router
 		if(!$check){
 
 			if($dev)
-				echo 'no response check <br>';
+				echo 'SECURITY CHECK = FALSE <br>';
 
 			$this->returnData(null);
 			die();
