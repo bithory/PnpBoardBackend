@@ -50,7 +50,7 @@ class Router
 			$this->returnData(null);
 			die();
 		}
-		else{
+		else if($check && isset($data['token'])){
 
 			$temp = array();
 			$temp = $sec->dbAction($data);
